@@ -72,17 +72,20 @@ class UserList extends Component {
         <img
           onClick={() => console.log("Clicked Search " + cell)}
           src={searchIcon}
+          alt="search icon"
           width="16"
           height="16"
         />
         <img
           onClick={() => console.log("Clicked Edit " + cell)}
+          alt="edit icon"
           src={editIcon}
           width="16"
           height="16"
         />
         <img
           onClick={() => console.log("Clicked Delete " + cell)}
+          alt="delete icon"
           src={deleteIcon}
           width="16"
           height="16"
@@ -122,7 +125,6 @@ class UserList extends Component {
 
   renderPaginationPanel = props => {
     console.log(props);
-    const { pageStartIndex, currPage, sizePerPage, totalPages } = props;
     const jumpToPage = Array.from(
       { length: props.totalPages },
       (v, i) => i + 1
@@ -167,8 +169,7 @@ class UserList extends Component {
       usersList,
       statesType,
       emailSubscriptionType,
-      statusType,
-      isLoaded
+      statusType
     } = this.state;
 
     const options = {
@@ -176,7 +177,7 @@ class UserList extends Component {
       defaultSortOrder: "asc",
       page: 1, // which page you want to show as default
       sizePerPage: 10, // which size per page you want to locate as default
-      sizePerPageList: [10, 25, 50, 100, 200, 500],
+      sizePerPageList: [10, 25, 50, 100],
       pageStartIndex: 1, // where to start counting the pages
       paginationSize: 3, // the pagination bar size.
       prePage: "Prev", // Previous page button text
