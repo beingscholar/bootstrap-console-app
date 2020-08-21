@@ -93,9 +93,9 @@ class UserList extends Component {
 
   renderShowsTotal(start, to, total) {
     return (
-      <p>
+      <div>
         Displaying {start}-{to} of {total} result(s)
-      </p>
+      </div>
     );
   }
 
@@ -121,15 +121,18 @@ class UserList extends Component {
   };
 
   renderPaginationPanel = props => {
-    // console.log(props);
+    console.log(props);
+    const { pageStartIndex, currPage, sizePerPage, totalPages } = props;
     const jumpToPage = Array.from(
       { length: props.totalPages },
       (v, i) => i + 1
     );
-
     return (
       <div>
-        <div>{props.components.pageList}</div>
+        <div>
+          <span>{props.components.totalText}</span>
+          {props.components.pageList}
+        </div>
         <div>
           <span>Page Size :</span>
           <select
@@ -173,6 +176,7 @@ class UserList extends Component {
       defaultSortOrder: "asc",
       page: 1, // which page you want to show as default
       sizePerPage: 10, // which size per page you want to locate as default
+      sizePerPageList: [10, 25, 50, 100, 200, 500],
       pageStartIndex: 1, // where to start counting the pages
       paginationSize: 3, // the pagination bar size.
       prePage: "Prev", // Previous page button text
@@ -182,7 +186,7 @@ class UserList extends Component {
       paginationShowsTotal: this.renderShowsTotal, // Accept bool or function
       // sizePerPageDropDown: this.renderSizePerPageDropDown,
       paginationPanel: this.renderPaginationPanel,
-      paginationPosition: "bottom" // default is bottom, top and both is all available
+      paginationPosition: "top" // default is bottom, top and both is all available
       // hideSizePerPage: true > You can hide the dropdown for sizePerPage
       // alwaysShowAllBtns: true // Always show next and previous button
       // withFirstAndLast: false > Hide the going to First and Last page button
